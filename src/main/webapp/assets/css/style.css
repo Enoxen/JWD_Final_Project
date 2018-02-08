@@ -1,0 +1,410 @@
+html, body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background-attachment: fixed !important;
+  filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#333, endColorstr=#363636);
+  background-image: -moz-linear-gradient(center top -90deg, #333, #363636);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#363636));
+  font-family: 'Pontano Sans', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar .container, #most .container, #random .container {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+section {
+  margin-bottom: 70px;
+}
+
+.title {
+  margin: 20px 0px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* NAVBAR */
+
+#navbar, .navbar {
+  /*background-color: #9DC8C8 !important;*/
+  background-color: transparent !important;
+  margin-top: 20px;
+}
+
+#navbar ul {
+  margin-left: 10px;
+}
+
+#navbar li {
+  padding: 0px 10px;
+}
+
+#navbar li a {
+  font-size: 20px;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+#navbar li a:hover {
+  color: #9DC8C8;
+}
+
+.logo {
+  display: flex;
+  align-items: flex-end;
+}
+
+.logo_image {
+  width: 63px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.circles {
+  display: flex;
+  position: absolute;
+  bottom: 24px;
+  left: 3px;
+  cursor: pointer;
+}
+
+.move-circle1 {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  animation-name: spin;
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  margin-left: -1px;
+  margin-right: 2px;
+  margin-top: 3px;
+}
+
+.move-circle2 {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  animation-name: spin;
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.move-circle2 img {
+  width: 25px;
+}
+
+@keyframes spin {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
+}
+
+.babina {
+  align-self: center;
+}
+
+.logo_name {
+  color: #fff;
+  font-family: 'Pacifico', cursive;
+  font-size: 30px;
+  transition: all 0.2s; 
+  margin-right: 5px;
+}
+
+.logo_name:hover {
+  text-decoration: none;
+  color: #9DC8C8;
+}
+
+.btn-outline-success {
+  color: #fff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #fff;
+}
+
+#navbar .form-control {
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #9DC8C8 !important;
+  transition: all 0.2s;
+}
+
+#navbar .form-control:hover, #navbar .form-control:focus {
+  border: 1px solid #9DC8C8;
+}
+
+.btn-outline-success:hover {
+  color: #333;
+  background-color: #9DC8C8;
+  border-color: #9DC8C8;
+}
+
+#navbar .lang {
+  margin-left: 15px;
+}
+
+#navbar .lang a {
+  color: #fff;
+}
+
+#navbar .lang a.active {
+  color: #9DC8C8; 
+}
+
+
+/* SWIPER CAROUSEL */
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 50px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.swiper-slide input {
+  border: 0px;
+  cursor: pointer;
+  color: transparent;
+}
+
+.swiper-slide, .swiper-slide input, .swiper-slide .poster {
+  width: 100%;
+  height: 250px;
+}
+
+.swiper-button-next, .swiper-button-prev {
+  top: 45%;
+  width: 27px;
+  height: 24px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+/* MOST VIEWED */
+
+#most .container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+#most .col {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#most .film {
+  background-color: transparent;
+  text-align: center;
+  font-size: 18px;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#most .film img {
+  width: 100%;
+}
+
+#most .film .about {
+  padding-top: 10px;
+}
+
+#most .film p {
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+
+#most .film .name {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* RANDOM */
+
+#random {
+  padding-top: 30px;
+}
+
+#random .film {
+  background-color: #fff;
+  text-align: center;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+#random .film img {
+  width: 100%;
+}
+
+#random .about i {
+  text-align: center;
+  width: 30px;
+}
+
+#random .about p {
+  margin-bottom: 10px;
+}
+
+#random .button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#random .btn-outline-primary {
+  border-color: #fff;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+#random .btn-outline-primary:hover {
+  color: #333;
+  border-color: #9DC8C8;
+  background-color: #9DC8C8;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  border: 0px !important;
+}
+
+footer .text-muted {
+  color: #000 !important;
+}
+
+.fade.in {
+  opacity: 1;
+}
+
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal-backdrop.in {
+  opacity: 0.5;
+}
+
+/* MODAL WINDOWS */
+
+.modal-header {
+  border-bottom: 0px;
+}
+
+.modal-header .close {
+  float: right;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 18px;
+  color: #fff;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 1;
+}
+
+.modal-footer {
+  border-top: 0px;
+  margin: 0 auto;
+}
+
+.modal-footer .btn {
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.modal-footer .btn:hover {
+  color: #333;
+  border-color: #9DC8C8;
+  background-color: #9DC8C8;
+}
+
+.modal-content .form-control {
+  width: 60%;
+  margin-left: 20%;
+  margin-bottom: 10px;
+}
+
+.modal-content {
+  text-align: center;
+  background-attachment: fixed !important;
+  filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#333, endColorstr=#363636);
+  background-image: -moz-linear-gradient(center top -90deg, #333, #363636);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#363636));
+  font-size: 14px;
+  color: #fff;
+}
+
+.modal-content input {
+  border-radius: 0px;
+  border: 0px;
+}
+
+.modal-content a {
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.modal-content a:hover {
+  color: #9DC8C8;
+}
+
+.modal {
+  text-align: center;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.modal-backdrop {
+  opacity: 0.9 !important;
+}
