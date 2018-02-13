@@ -1,5 +1,7 @@
 package by.tc.task.service.util.email;
 
+import by.tc.task.service.exception.EmailSendServiceException;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -17,8 +19,9 @@ public class Email {
         props.put(EmailConst.SMTP_PROP_AUTH, EmailConst.AUTH_TRUE);
         props.put(EmailConst.SMTP_PROP_CHARSET, EmailConst.ENCODING);
     }
-    public static void sendEmail(String email, String code){
+    public static void sendEmail(String email, String code) throws EmailSendServiceException {
         try {
+
             Session session = Session.getDefaultInstance(props, authenticator);
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress(EmailConst.FROM));
@@ -27,7 +30,7 @@ public class Email {
             msg.setText(code);
             Transport.send(msg);
         } catch (MessagingException e) {
-            e.printStackTrace();
+            throw new EmailSendServiceException("send email service error",e);
         }
     }
 }

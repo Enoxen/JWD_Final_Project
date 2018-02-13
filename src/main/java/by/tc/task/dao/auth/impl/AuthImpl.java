@@ -4,6 +4,7 @@ import by.tc.task.dao.auth.AuthDAO;
 import by.tc.task.dao.constant.DAODbQuery;
 import by.tc.task.dao.datasource.DataSource;
 import by.tc.task.dao.exception.AuthDAOException;
+import by.tc.task.dao.help.AuthHelp;
 import by.tc.task.dao.user.impl.UserDAOImpl;
 import by.tc.task.dao.util.Encryptor;
 import by.tc.task.dao.exception.DataSourceDAOException;
@@ -84,18 +85,20 @@ public class AuthImpl implements AuthDAO {
                 authUser.setString(1, login);
                 try (ResultSet authDataFromDb = authUser.executeQuery()) {
                     if (authDataFromDb.isBeforeFirst()) {
-
+                        System.out.println("kek");
                         authDataFromDb.next();
                         String dbLogin = authDataFromDb.getString(1);
                         String dbPassword = authDataFromDb.getString(2);
                         String dbSalt = authDataFromDb.getString(3);
                         String dbRole = authDataFromDb.getString(4);
-                        String dbEmail = authDataFromDb.getString(5);
+                        String dbEmail = authDataFromDb.getString(6);
                         int dbUserId = authDataFromDb.getInt(5);
-
-                        if (login.equals(dbLogin) && Encryptor.getPasswordHashCode(password, dbSalt).equals(dbPassword)) {
+                        System.out.println(Encryptor.getPasswordHashCode(password,dbSalt));
+                        System.out.println(dbPassword);
+                        if (/*login.equals(dbLogin) &&*/ Encryptor.getPasswordHashCode(password, dbSalt).equals(dbPassword)) {
                             return makeUserFromDbResponse(dbLogin, dbRole, dbUserId, dbEmail);
                         } else {
+                            System.out.println("pek");
                             return null;
                         }
                     } else {
@@ -118,5 +121,81 @@ public class AuthImpl implements AuthDAO {
         user.setUserId(dbUserId);
         user.setEmail(dbEmail);
         return user;
+    }
+    @Override
+    public boolean authPassChangeEmail(String email) throws AuthDAOException {
+        Connection connection = null;
+        try{
+            connection = DataSource.getConnection();
+            return AuthHelp.authEmail(email,connection);
+        } catch (DataSourceDAOException | SQLException e) {
+            throw new AuthDAOException("auth email to change pass DAO error",e);
+        }
+        finally {
+            DataSource.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public boolean putAuthCodeToDb(String code, String email) throws AuthDAOException {
+        Connection connection = null;
+        try{
+            connection = DataSource.getConnection();
+            try (PreparedStatement putCode = connection.prepareStatement(DAODbQuery.SQL_PUT_AUTH_CODE_TO_DB)) {
+                putCode.setString(1,code);
+                putCode.setString(2,email);
+                int rowsUpd = putCode.executeUpdate();
+                return rowsUpd != 0;
+            }
+        } catch (DataSourceDAOException | SQLException e) {
+            throw new AuthDAOException("put auth code to db error",e);
+        }
+        finally {
+            DataSource.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public boolean removeAuthCodeFromDb(String email) throws AuthDAOException {
+        Connection connection = null;
+        try{
+            connection = DataSource.getConnection();
+            int rowsUpd;
+            try (PreparedStatement removeCode = connection.prepareStatement(DAODbQuery.SQL_REMOVE_AUTH_CODE_FROM_DB)) {
+                removeCode.setString(1, email);
+                rowsUpd = removeCode.executeUpdate();
+            }
+            return rowsUpd != 0;
+        } catch (DataSourceDAOException | SQLException e) {
+            throw new AuthDAOException("remove auth code from db error",e);
+        }
+        finally {
+            DataSource.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public String getAuthCodeFromDb(String email) throws AuthDAOException {
+        Connection connection = null;
+        try{
+            connection = DataSource.getConnection();
+            try (PreparedStatement getCode = connection.prepareStatement(DAODbQuery.SQL_GET_AUTH_CODE_FROM_DB)) {
+                getCode.setString(1,email);
+                try (ResultSet code = getCode.executeQuery()) {
+                    if (code.isBeforeFirst()){
+                        code.next();
+                        return code.getString(1);
+                    }
+                    else {
+                        return null;
+                    }
+                }
+            }
+        } catch (DataSourceDAOException | SQLException e) {
+            throw new AuthDAOException("get auth code dao error",e);
+        }
+        finally {
+            DataSource.closeConnection(connection);
+        }
     }
 }

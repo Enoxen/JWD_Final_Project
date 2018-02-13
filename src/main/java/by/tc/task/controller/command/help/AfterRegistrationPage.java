@@ -2,7 +2,6 @@ package by.tc.task.controller.command.help;
 
 import by.tc.task.controller.command.Command;
 import by.tc.task.controller.constant.PagePath;
-import by.tc.task.exception.ServiceException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,11 +14,14 @@ import java.io.IOException;
  */
 public class AfterRegistrationPage implements Command{
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException,
-                                                            ServletException, IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher(PagePath.FIND_FILM);
-                dispatcher.forward(request, response);
-            }
+        RequestDispatcher dispatcher = request.getRequestDispatcher(PagePath.INDEX_PAGE);
+        try {
+            dispatcher.forward(request, response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+}
 

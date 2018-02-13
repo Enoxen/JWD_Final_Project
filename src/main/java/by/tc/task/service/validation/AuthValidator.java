@@ -15,7 +15,7 @@ public class AuthValidator {
 
     public static boolean isValidAuthData(AuthUserData data){
 
-        return isValidLogin(data.getLogin()) && isValidPassword(data.getOldPassword());
+        return isValidLogin(data.getLogin()) && isValidPassword(data.getNewPassword());
     }
     public static boolean isValidChangePasswordByLoginData(AuthUserData data){
 
@@ -26,8 +26,8 @@ public class AuthValidator {
     public static boolean isValidForgotPasswordData(AuthUserData userData){
 
         return isValidEmail(userData.getEmail()) && isValidPassword(userData.getNewPassword()) &&
-                isValidPassword(userData.getPasswordConfirm()) &&
-                userData.getNewPassword().equals(userData.getPasswordConfirm());
+                isValidPassword(userData.getPasswordConfirm()) /*&&
+                userData.getNewPassword().equals(userData.getPasswordConfirm())*/;
     }
 
     public static boolean isValidRegistrationData(String login, String password, String email){

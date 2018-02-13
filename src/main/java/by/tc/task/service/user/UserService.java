@@ -34,4 +34,7 @@ public interface UserService {
     List<Mark> getUserMarks(int userId, int startPos, int amount, String locale) throws UserServiceException;
 
     List<FilmOutput> getUserFavoriteFilms(int userId, String locale) throws UserServiceException;
+
+
+
 }

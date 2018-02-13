@@ -9,9 +9,12 @@ import by.tc.task.dao.user.UserDAO;
 import by.tc.task.entity.*;
 import by.tc.task.service.exception.UserServiceException;
 import by.tc.task.service.user.UserService;
+import by.tc.task.service.util.email.Email;
+import by.tc.task.service.util.generate.RandomString;
 import by.tc.task.service.validation.AuthValidator;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Y50-70 on 05.02.2018.
@@ -22,6 +25,7 @@ public class UserServiceImpl implements UserService {
     public User changePassword(AuthUserData userData) throws UserServiceException {
         if (userData.getLogin() == null){
             if (!AuthValidator.isValidForgotPasswordData(userData)){
+                System.out.println("puk");
                 return null;
             }
             else {
@@ -181,4 +185,5 @@ public class UserServiceImpl implements UserService {
             throw new UserServiceException("get user reviews service error",e);
         }
     }
+
 }

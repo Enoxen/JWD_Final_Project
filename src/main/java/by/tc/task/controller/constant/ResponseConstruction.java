@@ -11,4 +11,5 @@ public class ResponseConstruction {
     public static final String COMMAND_DELIMETER = "&";
     public static final String EQUALS = "=";
     public static final String MESSAGE = "message";
+    public static final String PAGE = "page";
 }

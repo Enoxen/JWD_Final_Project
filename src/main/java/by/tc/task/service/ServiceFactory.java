@@ -33,7 +33,13 @@ public class ServiceFactory {
             throw new ServiceException("init service error", e);
         }
     }
-
+    public static void destroyService() throws ServiceException {
+        try{
+            DAOFactory.destroyDataSource();
+        } catch (DAOException e) {
+            throw new ServiceException("destroy datasource service exception",e);
+        }
+    }
     public UserService getUserService() {
         return userService;
     }

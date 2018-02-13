@@ -1,4 +1,4 @@
-var swiper = new Swiper('.swiper-container', {
+let swiper = new Swiper('.swiper-container', {
 	slidesPerView: 5,
 	spaceBetween: 40,
 	slidesPerGroup: 1,
@@ -16,4 +16,4 @@ var swiper = new Swiper('.swiper-container', {
 
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
-})
+});

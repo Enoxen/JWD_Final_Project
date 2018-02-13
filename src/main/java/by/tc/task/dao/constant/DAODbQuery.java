@@ -12,12 +12,12 @@ public class DAODbQuery {
     public static final String SQL_AUTHORIZE_USER_BY_LOGIN = "select username, password, salt, role,user_id, email from user where (username = ?)";
     public static final String SQL_UPDATE_USER_PASSWORD_BY_LOGIN = "update user set password = ?, salt = ? where username = ?";
     public static final String SQL_GET_USER_PASSWORD = "select password, salt from user where username = ?";
-    public static final String SQL_UPDATE_USER_PASSWORD_BY_EMAIL = "update user set password = ? where email = ?";
+    public static final String SQL_UPDATE_USER_PASSWORD_BY_EMAIL = "update user set password = ?, salt = ? where email = ?";
     public static final String SQL_AUTH_USER_EMAIL = "select email from user where email = ?";
     public static final String SQL_UPDATE_USER_LOGIN = "update user set username = ? where user_id = ?";
     public static final String SQL_GET_USER_ID_BY_LOGIN = "select user_id from user where username = ?";
     public static final String SQL_UPDATE_USER_EMAIL_BY_LOGIN = "update user set email = ? where username = ?";
-    public static final String SQL_GET_UPDATED_USER_DATA = "select user_id, username, email, role, is_banned from user where username = ? xor email = ?";
+    public static final String SQL_GET_UPDATED_USER_DATA = "select user_id, username, email, role, is_banned from user where username = ? or email = ?";
     public static final String SQL_PUT_AUTH_CODE_TO_DB = "update user set code = ? where email = ?";
     public static final String SQL_REMOVE_AUTH_CODE_FROM_DB = "update user set code = null where email = ?";
     public static final String SQL_GET_AUTH_CODE_FROM_DB = "select code from user where email = ?";

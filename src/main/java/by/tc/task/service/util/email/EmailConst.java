@@ -5,7 +5,7 @@ package by.tc.task.service.util.email;
  */
 class EmailConst {
     final static String ENCODING = "UTF-8";
-    final static String SUBJECT = "Восстановление пароля";
+    final static String SUBJECT = "Restore Password";
     final static String SMTP_HOST = "smtp.rambler.ru";
     final static String FROM = "c.score@rambler.ru";
     final static String LOGIN = "c.score@rambler.ru";

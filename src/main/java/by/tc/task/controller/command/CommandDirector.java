@@ -12,13 +12,15 @@ import java.util.Map;
 public class CommandDirector {
     private Map<String,Command> map = new HashMap<>();
     public CommandDirector(){
-        map.put(CommandParam.GO_TO_REGISTRATION_PAGE, new UserRegistrator());
-        map.put(CommandParam.GO_TO_AUTH_PAGE, new UserAuthorizer());
-        map.put(CommandParam.GO_TO_FIND_FILM_PAGE, new FilmGetter());
-        map.put(CommandParam.GO_TO_INDEX, new IndexPage());
-        map.put(CommandParam.AFTER_REGISTRATION,new AfterRegistrationPage());
         map.put(CommandParam.CHANGE_LOCALE, new ChangeLocale());
-        map.put(CommandParam.GO_TO_SIGNING_PAGE, new ToSignPage());
+        map.put(CommandParam.SIGN_IN, new SignIn());
+        map.put(CommandParam.AFTER_REGISTRATION, new AfterRegistrationPage());
+        map.put(CommandParam.CHANGE_PAGE, new ChangePage());
+        map.put(CommandParam.SIGN_UP, new SignUp());
+        map.put(CommandParam.SEND_CODE, new EmailCode());
+        map.put(CommandParam.CHECK_CODE, new CheckCode());
+        map.put(CommandParam.CHANGE_PASSWORD_BY_EMAIL, new ChangePasswordByEmail());
+        map.put(CommandParam.SEARCH_BY_CATEGORY, new SearchByCategory());
     }
     public Command getCommand(String commandType){
         return  map.get(commandType);

@@ -49,7 +49,7 @@ public class DAOSearchQuery {
             "join actor on actor_has_film.actor_id = actor.actor_id \n" +
             "join director_has_film on film.film_id = director_has_film.film_id\n" +
             "join director on director_has_film.director_id = director.director_id \n" +
-            "where locate(?, film.film_default_title) and\n" +
+            "where locate(?, film.film_default_title) or\n" +
             "((film.film_year = ? xor (film.film_year >= ? and film.film_year <= ?)) or film_has_genre.genre_id = ?)\n" +
             " group by film.film_id;";
     public static final String SQL_ADVANCED_SEARCH_TITLE_NOT_NULL_EN = "select  film.film_id, film.film_loc_title, film.film_year, film.film_rating\n" +
@@ -60,7 +60,7 @@ public class DAOSearchQuery {
             "join actor on actor_has_film.actor_id = actor.actor_id \n" +
             "join director_has_film on film.film_id = director_has_film.film_id\n" +
             "join director on director_has_film.director_id = director.director_id \n" +
-            "where locate(?, film.film_loc_title) and\n" +
+            "where locate(?, film.film_loc_title) or\n" +
             "((film.film_year = ? xor (film.film_year >= ? and film.film_year <= ?)) or film_has_genre.genre_id = ?)\n" +
             " group by film.film_id limit;";
     public static final String SQL_ADVANCED_SEARCH_NULL_TITLE = "select  film.film_id, film.film_default_title, film.film_year, film.film_rating " +
